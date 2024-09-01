@@ -2,3 +2,5 @@
 .vscode
 .venv
 ML_models/Loss-Fold-2.bin
+__pycache__
+env

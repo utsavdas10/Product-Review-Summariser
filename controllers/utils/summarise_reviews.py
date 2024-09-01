@@ -1,7 +1,9 @@
 import os
 import json
 from groq import Groq
+from dotenv import load_dotenv
 
+load_dotenv() 
 
 async def summarise_reviews(classified_reviews):
     client = Groq(
@@ -23,28 +25,28 @@ async def summarise_reviews(classified_reviews):
                     Neutral Reviews: 
                     {classified_reviews['Neutral'],}
 
-                    *USING THESE GIVE 5 PROS AND 5 CONS OF THE PRODUCT IN BULLET POINTS*
+                    *USING THESE GIVE 8 PROS AND 8 CONS OF THE PRODUCT IN BULLET POINTS*
                     *ALSO USING ALL THE REVIEWS, GIVE A BRIEF SUMMARY OF THE PRODUCT IN 3-4 LINES*
 
                     This is an example of the exact format of the response, which should be followed: 
-                    Dont change the format of the response, just replace the content with the actual reviews and summary.
+                    Dont change the format of the response, just replace the content with the actual reviews and summary. Each pros and cons should be 8 to 15 words
                     Return nothing extra, just the response in the exact format as shown below.
                     {{
                         "pros": [
-                            "Good battery life",
-                            "Great camera quality",
-                            "Fast processor",
-                            "Good display",
-                            "Great build quality"
+                            "Good quality for the price: Offers solid value without breaking the bank.",
+                            "Decent comfort level: Comfortable for extended periods of sitting.",
+                            "Adjustable features: Customizable settings for different user preferences",
+                            "Easy to assemble: Simple instructions and minimal effort required for setup.",
+                            "Good for the money: Provides satisfactory performance for its cost."
                         ],
                         "cons": [
-                            "Poor battery life",
-                            "Poor camera quality",
-                            "Slow processor",
-                            "Poor display",
-                            "Poor build quality"
+                            "Poor quality control: Inconsistent manufacturing leads to varying product quality.",
+                            "Flimsy construction: Weak materials make the chair less durable overall.",
+                            "Armrests loosen frequently: Armrests require regular tightening to stay secure.",
+                            "Backrest wears down quickly: Material of the backrest degrades with frequent use.",
+                            "Roaches in the box: Unhygienic packaging resulted in finding pests in the product."
                         ],
-                        "summary": "The product is a great phone with a good battery life, great camera quality, fast processor, good display and great build quality. However, it has poor battery life, poor camera quality, slow processor, poor display and poor build quality."
+                        "summary": "The product is a decent chair with good quality for the price, decent comfort level, adjustable features, easy to assemble, and good for the money. However, it has some significant drawbacks including poor quality control, flimsy construction, armrests that loosen frequently, backrest that wears down quickly, and roaches found in the box."
                     }}
                     ''',
                 }
