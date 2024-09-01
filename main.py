@@ -30,4 +30,12 @@ if __name__ == "__main__":
     except ValueError:  # Handle invalid PORT values
         print("Invalid PORT environment variable. Using default port 4000.")
         port = 4000
-    run(app, host="127.0.0.1", port=port)
+    
+    try:
+        run(app, host="127.0.0.1", port=port)
+        print(f"Server running on port {port}")
+    except Exception as e:
+        print(f"Error: {e}")
+        print("Exiting...")
+        exit(1)
+    

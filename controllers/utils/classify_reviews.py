@@ -5,6 +5,7 @@ classification_module = ClassificationModule()
 
 
 async def classify_reviews(reviews):
+    print("Classifying reviews...")
     # Predict the sentiment of the input texts
     predictions = classification_module.predict_sentiment(reviews)
 
@@ -27,6 +28,11 @@ async def classify_reviews(reviews):
                 classified_reviews["Positive"].append(review)
     
     interpret_predictions(predictions)
-    print(classified_reviews)
+    print(f'''
+Successfully classified reviews into Positive, Negative and Neutral:
+Positive Reviews: {len(classified_reviews['Positive'])}
+Neutral Reviews: {len(classified_reviews['Neutral'])}
+Negative Reviews: {len(classified_reviews['Negative'])}
+          \n''')
     
     return classified_reviews

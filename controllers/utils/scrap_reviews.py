@@ -108,6 +108,7 @@ async def scrap_reviews(reviews_url):
 
     ### <font color="red">Data Process</font>
 
+    print(f"Scraping Reviews from {reviews_url} ...")
     # Grab all HTML
     html_datas = await reviewsHtml(reviews_url, len_page)
 
@@ -126,5 +127,6 @@ async def scrap_reviews(reviews_url):
     # Create a dataframe with reviews Data
     df_reviews = pd.DataFrame(reviews)
 
-    print(df_reviews)
+    # print(df_reviews)
+    print(f"Scraped {df_reviews.shape[0]} Reviews Successfully\n")
     return df_reviews['Description'].tolist()
