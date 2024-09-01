@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 
 load_dotenv() 
 
+def brief_summary(reviews):
+        return "\n".join(reviews[:5])
+
 async def summarise_reviews(classified_reviews):
     client = Groq(
         api_key=os.environ.get("GROQ_API_KEY"),
@@ -19,13 +22,13 @@ async def summarise_reviews(classified_reviews):
                     "content": f''' 
                     *Here are the product reviews classified into Positive, Negative and Neutral:*
                     Positive Reviews:
-                    {classified_reviews['Positive'],}
+                    {brief_summary(classified_reviews['Positive']),}
                     Negative Reviews: 
-                    {classified_reviews['Negative'],}
+                    {brief_summary(classified_reviews['Negative']),}
                     Neutral Reviews: 
-                    {classified_reviews['Neutral'],}
+                    {brief_summary(classified_reviews['Neutral']),}
 
-                    *USING THESE GIVE 8 PROS AND 8 CONS OF THE PRODUCT IN BULLET POINTS*
+                    *USING THESE GIVE 6 PROS AND 6 CONS OF THE PRODUCT IN BULLET POINTS*
                     *ALSO USING ALL THE REVIEWS, GIVE A BRIEF SUMMARY OF THE PRODUCT IN 3-4 LINES*
 
                     Below is an example of the exact format of the response, which should be followed
