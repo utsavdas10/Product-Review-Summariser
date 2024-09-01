@@ -33,7 +33,6 @@ if __name__ == "__main__":
     
     try:
         run(app, host="127.0.0.1", port=port)
-        print(f"Server running on port {port}")
     except Exception as e:
         print(f"Error: {e}")
         print("Exiting...")

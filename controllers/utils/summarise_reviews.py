@@ -28,7 +28,7 @@ async def summarise_reviews(classified_reviews):
                     *USING THESE GIVE 8 PROS AND 8 CONS OF THE PRODUCT IN BULLET POINTS*
                     *ALSO USING ALL THE REVIEWS, GIVE A BRIEF SUMMARY OF THE PRODUCT IN 3-4 LINES*
 
-                    This is an example of the exact format of the response, which should be followed: 
+                    Below is an example of the exact format of the response, which should be followed
                     Dont change the format of the response, just replace the content with the actual reviews and summary. Each pros and cons should be 8 to 15 words
                     Return nothing extra, just the response in the exact format as shown below.
                     {{
@@ -67,7 +67,11 @@ async def summarise_reviews(classified_reviews):
         if response.choices[0].message.content[j] == '}':
             break
         j -= 1
-    
+
     summarised_reviews = json.loads(response.choices[0].message.content[i:j+1])
+    summarised_reviews['Positive'] = len(classified_reviews['Positive'])
+    summarised_reviews['Negative'] = len(classified_reviews['Negative'])
+    summarised_reviews['Neutral'] = len(classified_reviews['Neutral'])
     print(summarised_reviews)
+    print("\nSummarised reviews successfully!\n")
     return summarised_reviews
