@@ -10,6 +10,7 @@ from controllers.review_brief import review_brief
 app = FastAPI()
 
 # CORS middleware
+# cross origin resource sharing
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],

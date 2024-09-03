@@ -112,7 +112,6 @@ class Scrapper:
         return df_reviews['Description'].tolist()
     
 
-
     # Scrapper for Flipkart
     async def flipkart(self, reviews_url):
         headers = {
@@ -126,6 +125,7 @@ class Scrapper:
             # Construct the URL for the current page
             # https://www.flipkart.com/motorola-g84-5g-viva-magneta-256-gb/p/itmed938e33ffdf5?pid=MOBGQFX672GDDQAQ&fm=organic&ppt=dynamic&ppn=dynamic&ssid=smencraz9c0000001725339457583
             url = reviews_url+'='+str(i)
+            
 
             # Send a GET request to the page
             page = requests.get(url, headers=headers)
