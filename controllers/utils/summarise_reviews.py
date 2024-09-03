@@ -37,7 +37,9 @@ async def summarise_reviews(classified_reviews, prodTitle):
                     Return nothing extra, just the response in the exact format as shown below.
                     In place of prodTitle generate a shortened title from the given long product title.
                     Also add a key-value array where the key is a string representing the feature name (e.g., 'Speed', 'Durability'), and the value is a numeric rating out of 5. and give the respose like 'Durability' : 4.0, 'Speed' : 5.0
-
+                    
+                    PROS and CONS should not be conflicting with each other. If a PRO is mentioned in the CONS, it should be removed from the CONS.
+            
                     Here is an example of the expected format:
                     {{
                         "pros": [
@@ -51,10 +53,10 @@ async def summarise_reviews(classified_reviews, prodTitle):
                         ],
                         "summary": "The product is a decent chair with good quality for the price, decent comfort level, adjustable features, easy to assemble, and good for the money. However, it has some significant drawbacks including poor quality control, flimsy construction, armrests that loosen frequently, backrest that wears down quickly, and roaches found in the box.",
                         "prodTitle" : "Mi Xiaomi X Pro 43\" 4K QLED TV",
-                        "features": [
-                            
-                        ]
+                        "features":[]
                     }}
+
+                    STRICTLY MAINTAIN THE FORMAT AS SHOWN ABOVE
                     ''',
                 }
             ],
