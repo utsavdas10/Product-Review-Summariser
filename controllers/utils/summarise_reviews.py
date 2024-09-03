@@ -66,7 +66,8 @@ async def summarise_reviews(classified_reviews, prodTitle):
     # print('response', response.choices[0].message.content)
 
     # Initialize variables to store parsed data
-    pros, cons, summary = [], [], ""
+    pros, cons, summary, productTitle = [], [], "", ""
+    parsed_data = {}
     
     # Extract and parse response content
     try:
