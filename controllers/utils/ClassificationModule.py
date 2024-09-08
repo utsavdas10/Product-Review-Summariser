@@ -10,6 +10,7 @@ class ClassificationModule():
         self.model.to(CONFIG['device'])
         self.model.eval()
         
+
     def predict_sentiment(self, texts):
         # Tokenize the input texts
         inputs = self.tokenizer(texts, padding=True, truncation=True, max_length=CONFIG['max_length'], return_tensors="pt")
@@ -23,3 +24,40 @@ class ClassificationModule():
             predictions = torch.argmax(logits, dim=1)
         
         return predictions
+
+
+    async def classify_reviews(self, reviews):
+        print("Classifying reviews...")
+        # Predict the sentiment of the input texts
+        predictions = self.predict_sentiment(reviews)
+
+        # class_labels = ["Negative", "Neutral", "Positive"]
+
+        classified_reviews = {
+            "Negative": [],
+            "Neutral": [],
+            "Positive": []
+        }
+
+        # Convert indices to labels
+        def interpret_predictions(predictions):
+            for review, prediction in zip(reviews, predictions):
+                if prediction == 0:
+                    classified_reviews["Negative"].append(review)
+                elif prediction == 1:
+                    classified_reviews["Neutral"].append(review)
+                else:
+                    classified_reviews["Positive"].append(review)
+            return None
+        
+
+        interpret_predictions(predictions)
+        
+        print(f'''
+    Successfully classified reviews into Positive, Negative and Neutral:
+    Positive Reviews: {len(classified_reviews['Positive'])}
+    Neutral Reviews: {len(classified_reviews['Neutral'])}
+    Negative Reviews: {len(classified_reviews['Negative'])}
+            \n''')
+        
+        return classified_reviews

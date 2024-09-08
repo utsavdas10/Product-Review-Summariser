@@ -2,6 +2,7 @@
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 
 class Scrapper:
@@ -141,3 +142,22 @@ class Scrapper:
         
         print(f'\nScraped {len(comments)} reviews from Flipkart\n')
         return comments
+
+    # Extract product name from URL
+    async def extract_product_name(self, url):
+        try:
+            # Parse the URL to get the path
+            parsed_url = urlparse(url)
+            path_segments = parsed_url.path.split('/')
+            
+            # Find the segment that contains the product name (usually the first one with hyphens)
+            for segment in path_segments:
+                if '-' in segment:
+                    # Replace hyphens with spaces and return the product name
+                    product_name = segment.replace('-', ' ')
+                    return product_name
+            
+            return "Product name not found"
+        
+        except Exception as e:
+            return f"Error extracting product name: {e}"
