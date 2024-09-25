@@ -7,7 +7,7 @@ from urllib.parse import urlparse
 
 class Scrapper:
     async def scrap_reviews(self, reviews_url):
-        if 'amazon' in reviews_url:
+        if 'amazon' in reviews_url or 'amzn' in reviews_url:
             return await self.amazon(reviews_url)
         elif 'flipkart' in reviews_url:
             return await self.flipkart(reviews_url)
